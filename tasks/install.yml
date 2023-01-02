@@ -1,0 +1,70 @@
+---
+- name: vm node
+  community.general.ldap_entry:
+    server_uri: "{{ ldap_entries_server_uri }}"
+    bind_dn: "{{ ldap_entries_bind_dn }}"
+    bind_pw: "{{ ldap_entries_bind_pw }}"
+    start_tls: "{{ ldap_entries_start_tls }}"
+    validate_certs: "{{ ldap_entries_validate_certs }}"
+    dn: "cn={{ ldap_entries_vm_name }},{{ ldap_entries_dn_suffix }}"
+    objectClass: groupOfNames
+    attributes:
+      member:
+        - cn=firewall,ou=applications,ou=users,dc=axione,dc=fr
+  delegate_to: "{{ ldap_entries_executor }}"
+
+- name: vm node attributs
+  community.general.ldap_attrs:
+    server_uri: "{{ ldap_entries_server_uri }}"
+    bind_dn: "{{ ldap_entries_bind_dn }}"
+    bind_pw: "{{ ldap_entries_bind_pw }}"
+    start_tls: "{{ ldap_entries_start_tls }}"
+    validate_certs: "{{ ldap_entries_validate_certs }}"
+    dn: "cn={{ ldap_entries_vm_name }},{{ ldap_entries_dn_suffix }}"
+    attributes:
+      member:
+        - "{{ item.key }}"
+  loop: "{{ ldap_entries_users | dict2items }}"
+  delegate_to: "{{ ldap_entries_executor }}"
+
+- name: sudo node
+  community.general.ldap_entry:
+    server_uri: "{{ ldap_entries_server_uri }}"
+    bind_dn: "{{ ldap_entries_bind_dn }}"
+    bind_pw: "{{ ldap_entries_bind_pw }}"
+    start_tls: "{{ ldap_entries_start_tls }}"
+    validate_certs: "{{ ldap_entries_validate_certs }}"
+    dn: "ou=sudo,cn={{ ldap_entries_vm_name }},{{ ldap_entries_dn_suffix }}"
+    objectClass: organizationalUnit
+  delegate_to: "{{ ldap_entries_executor }}"
+
+- name: firewall sudo node
+  community.general.ldap_entry:
+    server_uri: "{{ ldap_entries_server_uri }}"
+    bind_dn: "{{ ldap_entries_bind_dn }}"
+    bind_pw: "{{ ldap_entries_bind_pw }}"
+    start_tls: "{{ ldap_entries_start_tls }}"
+    validate_certs: "{{ ldap_entries_validate_certs }}"
+    dn: "cn=firewall,ou=sudo,cn={{ ldap_entries_vm_name }},{{ ldap_entries_dn_suffix }}"
+    objectClass: sudoRole
+    attributes:
+      sudocommand: FIREWALL
+      sudohost: ALL
+      sudouser: firewall
+  delegate_to: "{{ ldap_entries_executor }}"
+
+- name: user sudo node
+  community.general.ldap_entry:
+    server_uri: "{{ ldap_entries_server_uri }}"
+    bind_dn: "{{ ldap_entries_bind_dn }}"
+    bind_pw: "{{ ldap_entries_bind_pw }}"
+    start_tls: "{{ ldap_entries_start_tls }}"
+    validate_certs: "{{ ldap_entries_validate_certs }}"
+    dn: "{{ item.key.split(',')[0] }},ou=sudo,cn={{ ldap_entries_vm_name }},{{ ldap_entries_dn_suffix }}"
+    objectClass: sudoRole
+    attributes:
+      sudocommand: ALL
+      sudohost: ALL
+      sudouser: "{{ item.value }}"
+  loop: "{{ ldap_entries_users | dict2items }}"
+  delegate_to: "{{ ldap_entries_executor }}"
