@@ -10,7 +10,6 @@
 [![License](https://img.shields.io/badge/license-Apache--2.0-brightgreen?style=flat)](https://opensource.org/licenses/Apache-2.0)
 
 ldapdd entries into ldap in order to auth with ssh and sudo
-
 ## Requirements
 
 you need to install the package python-ldap on the host specified on var ldap_entries_executor
