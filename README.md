@@ -3,8 +3,8 @@
 [![Galaxy Role](https://img.shields.io/badge/galaxy-system_ldap_entries-purple?style=flat)](https://galaxy.ansible.com/lotusnoir/system_ldap_entries)
 [![Version](https://img.shields.io/github/release/lotusnoir/ansible-system_ldap_entries.svg)](https://github.com/lotusnoir/ansible-system_ldap_entries/releases/latest)
 [![GitHub repo size](https://img.shields.io/github/repo-size/lotusnoir/ansible-system_ldap_entries?color=orange&style=flat)](https://galaxy.ansible.com/lotusnoir/system_ldap_entries)
-[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/lotusnoir/system_ldap_entries)
-[![Ansible Quality Score](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/lotusnoir/system_ldap_entries)
+[![downloads](https://img.shields.io/ansible/role/d/61813)](https://galaxy.ansible.com/lotusnoir/system_ldap_entries)
+[![Ansible Quality Score](https://img.shields.io/ansible/quality/61813)](https://galaxy.ansible.com/lotusnoir/system_ldap_entries)
 [![License](https://img.shields.io/badge/license-Apache--2.0-brightgreen?style=flat)](https://opensource.org/licenses/Apache-2.0)
 
 ## Description
