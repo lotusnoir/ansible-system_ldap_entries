@@ -23,6 +23,7 @@
       member:
         - "{{ ldap_entries_fw }}"
   delegate_to: "{{ ldap_entries_executor }}"
+  when: not ldap_entries_delete|bool
 
 - name: vm node attributs
   community.general.ldap_attrs:
@@ -37,6 +38,7 @@
         - "{{ item.key }}"
   loop: "{{ ldap_entries_users | dict2items }}"
   delegate_to: "{{ ldap_entries_executor }}"
+  when: not ldap_entries_delete|bool
 
 - name: sudo node
   community.general.ldap_entry:
@@ -48,6 +50,7 @@
     dn: "ou=sudo,cn={{ ldap_entries_vm_name }},{{ ldap_entries_dn_suffix }}"
     objectClass: organizationalUnit
   delegate_to: "{{ ldap_entries_executor }}"
+  when: not ldap_entries_delete|bool
 
 - name: firewall sudo node
   community.general.ldap_entry:
@@ -63,6 +66,7 @@
       sudohost: ALL
       sudouser: firewall
   delegate_to: "{{ ldap_entries_executor }}"
+  when: not ldap_entries_delete|bool
 
 - name: user sudo node
   community.general.ldap_entry:
@@ -79,6 +83,7 @@
       sudouser: "{{ item.value }}"
   loop: "{{ ldap_entries_users | dict2items }}"
   delegate_to: "{{ ldap_entries_executor }}"
+  when: not ldap_entries_delete|bool
 
 - name: delete user sudo node
   community.general.ldap_entry:
