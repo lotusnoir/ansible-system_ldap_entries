@@ -17,7 +17,7 @@ ldap_entries_fw: cn=firewall,ou=applications,ou=users,dc=test,dc=fr
 ldap_entries_delete: false
 
 ### List of users
-ldap_entries_users: "{{ ldap_entries_users_common | combine(ldap_entries_users_group| default({})) | combine(ldap_entries_users_host| default({})) }}"
+ldap_entries_users: "{{ ldap_entries_users_common | combine(ldap_entries_users_group | default({})) | combine(ldap_entries_users_host | default({})) }}"
 ldap_entries_users_common:
   cn=titi.momo,ou=internal,ou=users,dc=test,dc=fr: tmo
   cn=xi.tutu,ou=internal,ou=users,dc=test,dc=fr: xtu
