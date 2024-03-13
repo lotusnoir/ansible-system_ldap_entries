@@ -10,7 +10,7 @@
       - "dn: cn={{ ldap_entries_vm_name }},{{ ldap_entries_dn_suffix }}"
   when: debug_exec|bool
 
-- name: vm node
+- name: VM node
   community.general.ldap_entry:
     server_uri: "{{ ldap_entries_server_uri }}"
     bind_dn: "{{ ldap_entries_bind_dn }}"
@@ -25,7 +25,7 @@
   delegate_to: "{{ ldap_entries_executor }}"
   when: not ldap_entries_delete|bool
 
-- name: vm node attributs
+- name: VM node attributs
   community.general.ldap_attrs:
     server_uri: "{{ ldap_entries_server_uri }}"
     bind_dn: "{{ ldap_entries_bind_dn }}"
@@ -40,7 +40,7 @@
   delegate_to: "{{ ldap_entries_executor }}"
   when: not ldap_entries_delete|bool
 
-- name: sudo node
+- name: Sudo node
   community.general.ldap_entry:
     server_uri: "{{ ldap_entries_server_uri }}"
     bind_dn: "{{ ldap_entries_bind_dn }}"
@@ -52,7 +52,7 @@
   delegate_to: "{{ ldap_entries_executor }}"
   when: not ldap_entries_delete|bool
 
-- name: firewall sudo node
+- name: Firewall sudo node
   community.general.ldap_entry:
     server_uri: "{{ ldap_entries_server_uri }}"
     bind_dn: "{{ ldap_entries_bind_dn }}"
@@ -68,7 +68,7 @@
   delegate_to: "{{ ldap_entries_executor }}"
   when: not ldap_entries_delete|bool
 
-- name: user sudo node
+- name: User sudo node
   community.general.ldap_entry:
     server_uri: "{{ ldap_entries_server_uri }}"
     bind_dn: "{{ ldap_entries_bind_dn }}"
@@ -98,7 +98,7 @@
 #  delegate_to: "{{ ldap_entries_executor }}"
 #  when: ldap_entries_delete|bool
 
-- name: delete vm node
+- name: Delete vm node
   community.general.ldap_entry:
     server_uri: "{{ ldap_entries_server_uri }}"
     bind_dn: "{{ ldap_entries_bind_dn }}"
