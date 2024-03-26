@@ -8,6 +8,7 @@
       - "start_tls: {{ ldap_entries_start_tls }}"
       - "validate_certs: {{ ldap_entries_validate_certs }}"
       - "dn: cn={{ ldap_entries_vm_name }},{{ ldap_entries_dn_suffix }}"
+  delegate_to: "{{ ldap_entries_executor }}"
   when: debug_exec|bool
 
 - name: VM node
