@@ -22,9 +22,11 @@
 ## Description
 
 ldapdd entries into ldap in order to auth with ssh and sudo
-## Requirements
 
 you need to install the package python-ldap on the host specified on var ldap_entries_executor
+## Requirements
+
+none
 
 ## Role variables
 
