@@ -86,18 +86,18 @@
   delegate_to: "{{ ldap_entries_executor }}"
   when: not ldap_entries_delete|bool
 
-#- name: delete user sudo node
-#  community.general.ldap_entry:
-#    server_uri: "{{ ldap_entries_server_uri }}"
-#    bind_dn: "{{ ldap_entries_bind_dn }}"
-#    bind_pw: "{{ ldap_entries_bind_pw }}"
-#    start_tls: "{{ ldap_entries_start_tls }}"
-#    validate_certs: "{{ ldap_entries_validate_certs }}"
-#    dn: "{{ item.key.split(',')[0] }},ou=sudo,cn={{ ldap_entries_vm_name }},{{ ldap_entries_dn_suffix }}"
-#    state: absent
-#  loop: "{{ ldap_entries_users | dict2items }}"
-#  delegate_to: "{{ ldap_entries_executor }}"
-#  when: ldap_entries_delete|bool
+# - name: delete user sudo node
+#   community.general.ldap_entry:
+#     server_uri: "{{ ldap_entries_server_uri }}"
+#     bind_dn: "{{ ldap_entries_bind_dn }}"
+#     bind_pw: "{{ ldap_entries_bind_pw }}"
+#     start_tls: "{{ ldap_entries_start_tls }}"
+#     validate_certs: "{{ ldap_entries_validate_certs }}"
+#     dn: "{{ item.key.split(',')[0] }},ou=sudo,cn={{ ldap_entries_vm_name }},{{ ldap_entries_dn_suffix }}"
+#     state: absent
+#   loop: "{{ ldap_entries_users | dict2items }}"
+#   delegate_to: "{{ ldap_entries_executor }}"
+#   when: ldap_entries_delete|bool
 
 - name: Delete vm node
   community.general.ldap_entry:
