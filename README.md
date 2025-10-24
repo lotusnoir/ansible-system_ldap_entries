@@ -24,6 +24,7 @@
 ldapdd entries into ldap in order to auth with ssh and sudo
 
 you need to install the package python-ldap on the host specified on var ldap_entries_executor
+
 ## Requirements
 
 none
@@ -41,7 +42,6 @@ See [variables](/defaults/main.yml) for more details.
           gather_facts: true
           roles:
             - role: ansible-system_ldap_entries
-
 
 ## License
 
